@@ -11,15 +11,23 @@ class Login extends Component {
         };
     }
 
+    componentDidMount() {
+        if (localStorage.getItem('token')) {
+            window.location = '/contactos';
+        }
+    }
+
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
+
     handleSubmit = (event) => {
         event.preventDefault();
         axios.post('http://localhost/login', this.state)
             .then(response => {
                 console.log(response.data.token);
                 localStorage.setItem('token', response.data.token);
+                window.location = '/contactos';
             })
             .catch(error => {
                 console.log(error);

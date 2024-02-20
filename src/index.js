@@ -5,15 +5,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Login from './Login';
 import ListaContactos from './ListaContactos';
+import BorrarContacto from './BorrarContacto';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <App />
-        <Login />
-        {/* if (localStorage.getItem('token')) {
-            <ListaContactos />
-        } */}
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/contactos" element={<ListaContactos />} />
+                <Route path="/borrar/:id" element={<BorrarContacto />} />
+            </Routes>
+        </BrowserRouter>
     </React.StrictMode>
 );
 

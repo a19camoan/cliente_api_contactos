@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 
-// Para listar necesitamos hacer una petición GET a la API usando un token como bearer token previamente obtenido en el login.
-
 class ListaContactos extends Component {
     constructor(props) {
         super(props);
@@ -13,13 +11,16 @@ class ListaContactos extends Component {
     }
 
     componentDidMount() {
+        if (!localStorage.getItem('token')) {
+            window.location = '/';
+        }
+
         axios.get('http://localhost/contactos', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
             .then(response => {
-                console.log(response.data);
                 this.setState({ contactos: response.data });
             })
             .catch(error => {
@@ -29,12 +30,36 @@ class ListaContactos extends Component {
 
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <h1>Contactos</h1>
-                    <ul>
-                        {this.state.contactos.map(contacto => <li key={contacto.id}>{contacto.nombre}</li>)}
-                    </ul>
+            <div className="Lista-contactos">
+                <header className="Lista-contactos-header">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.contactos.map(contacto => (
+                                <tr key={contacto.id}>
+                                    <td>{contacto.nombre}</td>
+                                    <td>{contacto.email}</td>
+                                    <td>{contacto.telefono}</td>
+                                    <td>
+                                        <a href={`/editar/${contacto.id}`}><button>📝</button></a>
+                                        <a href={`/borrar/${contacto.id}`}><button>🗑️</button></a>
+                                    </td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td colSpan="4">
+                                    <a href="/nuevo"><button className='addButton'>Añadir contacto</button></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </header>
             </div>
         );
