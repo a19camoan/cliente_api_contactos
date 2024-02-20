@@ -10,7 +10,7 @@ class BorrarContacto extends Component {
         const id = window.location.pathname.split('/')[2];
         axios.delete(`http://localhost/contactos/${id}`, {
             headers: {
-                'Bearer': localStorage.getItem('token')
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
             .then(response => {

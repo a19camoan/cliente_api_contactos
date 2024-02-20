@@ -36,8 +36,8 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
+            <div className="Login">
+                <header className="Login-header">
                     <h1>Login</h1>
                     <form onSubmit={this.handleSubmit}>
                         <div>

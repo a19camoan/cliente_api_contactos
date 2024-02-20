@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import Login from './Login';
 import ListaContactos from './ListaContactos';
 import BorrarContacto from './BorrarContacto';
+import CrearContacto from './CrearContacto';
+import EditarContacto from './EditarContacto';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,6 +19,8 @@ root.render(
                 <Route path="/" element={<Login />} />
                 <Route path="/contactos" element={<ListaContactos />} />
                 <Route path="/borrar/:id" element={<BorrarContacto />} />
+                <Route path="/editar/:id" element={<EditarContacto />} />
+                <Route path="/nuevo" element={<CrearContacto />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
