@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from './enviroment';
+import { checkToken } from './checkToken';
 import AtrasBoton from './AtrasBoton';
 import './css/App.css';
 import './css/CrearContacto.css';
@@ -15,10 +16,8 @@ class CrearContacto extends Component {
         };
     }
 
-    componentDidMount() {
-        if (!localStorage.getItem('token')) {
-            window.location = '/';
-        }
+    async componentDidMount() {
+        checkToken();
     }
 
     handleChange = (event) => {

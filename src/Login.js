@@ -13,7 +13,7 @@ class Login extends Component {
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         if (localStorage.getItem('token')) {
             window.location = '/contactos';
         }

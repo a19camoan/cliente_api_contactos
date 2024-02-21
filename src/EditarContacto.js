@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL } from './enviroment';
+import { checkToken } from './checkToken';
 import AtrasBoton from './AtrasBoton';
 import './css/App.css';
 import './css/EditarContacto.css';
@@ -15,11 +16,8 @@ class EditarContacto extends Component {
         };
     }
 
-    componentDidMount() {
-        if (!localStorage.getItem('token')) {
-            window.location = '/';
-        }
-
+    async componentDidMount() {
+        checkToken();
         const id = window.location.pathname.split('/')[2];
         axios.get(`${API_URL}contactos/${id}`, {
             headers: {

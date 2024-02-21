@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { API_URL } from './enviroment';
+import { checkToken } from './checkToken';
+import axios from 'axios';
 import './css/App.css';
 import './css/ListaContactos.css';
-
-
 
 class ListaContactos extends Component {
     constructor(props) {
@@ -14,10 +13,8 @@ class ListaContactos extends Component {
         };
     }
 
-    componentDidMount() {
-        if (!localStorage.getItem('token')) {
-            window.location = '/';
-        }
+    async componentDidMount() {
+        checkToken();
 
         axios.get(`${API_URL}contactos`, {
             headers: {

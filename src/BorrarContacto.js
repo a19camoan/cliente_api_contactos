@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { API_URL } from './enviroment';
 import axios from 'axios';
+import { checkToken } from './checkToken';
 
 class BorrarContacto extends Component {
-    componentDidMount() {
-        if (!localStorage.getItem('token')) {
-            window.location = '/';
-        }
-
+    async componentDidMount() {
+        checkToken();
         const id = window.location.pathname.split('/')[2];
         axios.delete(`${API_URL}contactos/${id}`, {
             headers: {
