@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import { API_URL } from './enviroment';
+import AtrasBoton from './AtrasBoton';
+import './css/App.css';
+import './css/EditarContacto.css';
 
 class EditarContacto extends Component {
     constructor(props) {
@@ -18,7 +21,7 @@ class EditarContacto extends Component {
         }
 
         const id = window.location.pathname.split('/')[2];
-        axios.get(`http://localhost/contactos/${id}`, {
+        axios.get(`${API_URL}contactos/${id}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -71,6 +74,7 @@ class EditarContacto extends Component {
                         </div>
                         <button type="submit">Guardar</button>
                     </form>
+                    <AtrasBoton />
                 </header>
             </div>
         );

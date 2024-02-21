@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import { API_URL } from './enviroment';
+import './css/App.css';
+import './css/Login.css';
 
 class Login extends Component {
     constructor(props) {
@@ -19,26 +21,25 @@ class Login extends Component {
 
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
-    }
+    };
 
     handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost/login', this.state)
+        axios.post(`${API_URL}login`, this.state)
             .then(response => {
-                console.log(response.data.token);
                 localStorage.setItem('token', response.data.token);
                 window.location = '/contactos';
             })
             .catch(error => {
                 console.log(error);
             });
-    }
+    };
 
     render() {
         return (
             <div className="Login">
                 <header className="Login-header">
-                    <h1>Login</h1>
+                    <h2>Login</h2>
                     <form onSubmit={this.handleSubmit}>
                         <div>
                             <label htmlFor="usuario">Nombre: </label>

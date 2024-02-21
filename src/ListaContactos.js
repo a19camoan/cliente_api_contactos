@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import { API_URL } from './enviroment';
+import './css/App.css';
+import './css/ListaContactos.css';
+
+
 
 class ListaContactos extends Component {
     constructor(props) {
@@ -15,7 +19,7 @@ class ListaContactos extends Component {
             window.location = '/';
         }
 
-        axios.get('http://localhost/contactos', {
+        axios.get(`${API_URL}contactos`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }

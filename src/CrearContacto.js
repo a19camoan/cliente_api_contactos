@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import { API_URL } from './enviroment';
+import AtrasBoton from './AtrasBoton';
+import './css/App.css';
+import './css/CrearContacto.css';
 
 class CrearContacto extends Component {
     constructor(props) {
@@ -24,7 +27,7 @@ class CrearContacto extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost/contactos', this.state, {
+        axios.post(`${API_URL}contactos`, this.state, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -57,6 +60,7 @@ class CrearContacto extends Component {
                         </div>
                         <button type="submit">Guardar</button>
                     </form>
+                    <AtrasBoton />
                 </header>
             </div>
         );
