@@ -57,6 +57,7 @@ class ListaContactos extends Component {
                             <tr>
                                 <td colSpan="4">
                                     <a href="/nuevo"><button className='addButton'>Añadir contacto</button></a>
+                                    <a href="/logout"><button className='logoutButton'>Cerrar sesión</button></a>
                                 </td>
                             </tr>
                         </tbody>
